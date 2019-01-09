@@ -124,6 +124,7 @@
             <a href="main.jsp?id=${row.id}" class="title">${row.name}</a>
             <strong>&yen;${row.price}</strong>
         </li>
+        </c:forEach>
         </c:if>
     </ul>
     <footer>
