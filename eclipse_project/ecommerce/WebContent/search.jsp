@@ -1,3 +1,10 @@
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +16,9 @@
 <!--[if IE]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+ <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+     url="jdbc:mysql://localhost/catalog_db"
+     user="root"  password=""/>
 </head>
 <body>
 <header>
@@ -17,40 +27,58 @@
         <nav>
             <ul>
                 <li>
-                  <a href="search.jsp">Tops</a>
+                  <a href="search.jsp">Men</a>
                   <ul class="sub-menu">
                         <li><a href="search.jsp">Tshirts</a></li>
                         <li><a href="search.jsp">Jumpers</a></li>
-                        <li><a href="search.jsp">Cardigans</a></li>
+                        <li><a href="search.jsp">Pants</a></li>
                         <li><a href="search.jsp">Knitwear</a></li>
                     </ul>
                 </li>
-                <li><a href="search.jsp">Trousers</a></li>
                 <li>
-                	<a href="search.jsp">Dresses</a>
-                    <ul class="sub-menu">
-                        <li><a href="search.jsp">Bridal dress</a></li>
-                        <li><a href="search.jsp">Cocktail dress</a></li>
-                        <li><a href="search.jsp">Maxi dress</a></li>
-                        <li><a href="search.jsp">Shift dress</a></li>
-                        <li><a href="search.jsp" class="current">Summer dress</a></li>
-                        <li><a href="search.jsp">Warp dress</a></li>
-                    </ul>
-                </li>
-                <li><a href="search.jsp">Skirts</a></li>
-                <li>
-                    <a href="search.jsp">Accessories</a>
-                    <ul class="sub-menu">
-                        <li><a href="search.jsp">Shoes</a></li>
-                        <li><a href="search.jsp">Hats</a></li>
+                  <a href="search.jsp">Women</a>
+                  <ul class="sub-menu">
+                        <li><a href="search.jsp">Tops</a></li>
                         <li><a href="search.jsp">Bags</a></li>
-                        <li><a href="search.jsp">Scarves</a></li>
+                        <li><a href="search.jsp">Shoes</a></li>
                         <li><a href="search.jsp">Jewellery</a></li>
-                        <li><a href="search.jsp">Gloves</a></li>
                     </ul>
                 </li>
-                <li><a href="search.jsp">Coats &amp; Jackets </a></li>
-                <li><a href="search.jsp">Brands</a></li>
+                <li>
+                  <a href="search.html">Tops</a>
+                  <ul class="sub-menu">
+                        <li><a href="search.html">Tshirts</a></li>
+                        <li><a href="search.html">Jumpers</a></li>
+                        <li><a href="search.html">Cardigans</a></li>
+                        <li><a href="search.html">Knitwear</a></li>
+                    </ul>
+                </li>
+                <li><a href="search.html">Trousers</a></li>
+                <li>
+                    <a href="search.html">Dresses</a>
+                    <ul class="sub-menu">
+                        <li><a href="search.html">Bridal dress</a></li>
+                        <li><a href="search.html">Cocktail dress</a></li>
+                        <li><a href="search.html">Maxi dress</a></li>
+                        <li><a href="search.html">Shift dress</a></li>
+                        <li><a href="search.html" class="current">Summer dress</a></li>
+                        <li><a href="search.html">Warp dress</a></li>
+                    </ul>
+                </li>
+                <li><a href="search.html">Skirts</a></li>
+                <li>
+                    <a href="search.html">Accessories</a>
+                    <ul class="sub-menu">
+                        <li><a href="search.html">Shoes</a></li>
+                        <li><a href="search.html">Hats</a></li>
+                        <li><a href="search.html">Bags</a></li>
+                        <li><a href="search.html">Scarves</a></li>
+                        <li><a href="search.html">Jewellery</a></li>
+                        <li><a href="search.html">Gloves</a></li>
+                    </ul>
+                </li>
+                <li><a href="search.html">Coats &amp; Jackets </a></li>
+                <li><a href="search.html">Brands</a></li>
           </ul>
         </nav>
     </div>
@@ -61,8 +89,8 @@
             <li><a href="#" class="facebook" title="like us us on Facebook">like us us on Facebook</a></li>
             <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
         </ul>
-        <form>
-        	<input type="text" placeholder="Search ABC comp..." /><button type="submit">Search</button>
+        <form action="search.jsp" method="GET">
+        	<input type="text" name="q" placeholder="Search ABC comp..." /><input type="submit" value="Search">
         </form>
         <div id="action-bar"><a href="login.jsp">Login/Register</a></div>
     </div>
@@ -83,139 +111,20 @@
         </form>
     </header>
     <ul id="items">
+        <c:set var="q" scope="session" value='<%= request.getParameter("q")%>'/>
+        <c:if test="${q}">
+        <c:set var="q" value='<%= request.getParameter("q")%>'/>
+        <sql:query dataSource="${snapshot}" var="result">
+            SELECT * FROM clothes WHERE name= ?
+            <sql:param value="${q}" />
+        </sql:query>
+        <c:forEach var="row" items="${result.rows}">
         <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-      </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
+            <a href="main.jsp?id=${row.id}"><img src="images/${row.pic_location}" alt="${row.name}"/></a>
+            <a href="main.jsp?id=${row.id}" class="title">${row.name}</a>
+            <strong>&yen;${row.price}</strong>
         </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Longer title Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong><em>previously &pound;649</em>&pound;499</strong>
-            <span class="sale">Sale</span>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Longer title Elegant evening Dress</a>
-            <strong><em>previously &pound;649</em>&pound;499</strong>
-            <span class="sale">Sale</span>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong><em>previously &pound;649</em>&pound;499</strong>
-            <span class="sale">Sale</span>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong><em>previously &pound;649</em>&pound;499</strong>
-            <span class="sale">Sale</span>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Longer title Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong><em>previously &pound;649</em>&pound;499</strong>
-            <span class="sale">Sale</span>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Longer title Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-            <span class="sale">Sale</span>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong><em>previously &pound;649</em>&pound;499</strong>
-            <span class="sale">Sale</span>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong><em>previously &pound;649</em>&pound;499</strong>
-            <span class="sale">Sale</span>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
-        <li>
-            <a href="main.jsp"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a href="main.jsp" class="title">Elegant evening Dress</a>
-            <strong>&pound;499</strong>
-        </li>
+        </c:if>
     </ul>
     <footer>
         <div class="paging">

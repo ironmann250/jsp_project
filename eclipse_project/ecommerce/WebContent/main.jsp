@@ -1,3 +1,10 @@
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,46 +26,67 @@
 </script>
 </head>
 <body>
+     <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+     url="jdbc:mysql://localhost/catalog_db"
+     user="root"  password=""/>
 <header>
 	<div class="wrapper">
         <h1><a href="index.jsp" id="brand" title="ABC comp">ABC comp</a></h1>
         <nav>
             <ul>
                 <li>
-                  <a href="search.jsp">Tops</a>
+                  <a href="search.jsp">Men</a>
                   <ul class="sub-menu">
                         <li><a href="search.jsp">Tshirts</a></li>
                         <li><a href="search.jsp">Jumpers</a></li>
-                        <li><a href="search.jsp">Cardigans</a></li>
+                        <li><a href="search.jsp">Pants</a></li>
                         <li><a href="search.jsp">Knitwear</a></li>
                     </ul>
                 </li>
-                <li><a href="search.jsp">Trousers</a></li>
                 <li>
-                	<a href="search.jsp">Dresses</a>
-                    <ul class="sub-menu">
-                        <li><a href="search.jsp">Bridal dress</a></li>
-                        <li><a href="search.jsp">Cocktail dress</a></li>
-                        <li><a href="search.jsp">Maxi dress</a></li>
-                        <li><a href="search.jsp">Shift dress</a></li>
-                        <li><a href="search.jsp">Summer dress</a></li>
-                        <li><a href="search.jsp">Warp dress</a></li>
-                    </ul>
-                </li>
-                <li><a href="search.jsp">Skirts</a></li>
-                <li>
-                    <a href="search.jsp">Accessories</a>
-                    <ul class="sub-menu">
-                        <li><a href="search.jsp">Shoes</a></li>
-                        <li><a href="search.jsp">Hats</a></li>
+                  <a href="search.jsp">Women</a>
+                  <ul class="sub-menu">
+                        <li><a href="search.jsp">Tops</a></li>
                         <li><a href="search.jsp">Bags</a></li>
-                        <li><a href="search.jsp">Scarves</a></li>
+                        <li><a href="search.jsp">Shoes</a></li>
                         <li><a href="search.jsp">Jewellery</a></li>
-                        <li><a href="search.jsp">Gloves</a></li>
                     </ul>
                 </li>
-                <li><a href="search.jsp">Coats &amp; Jackets </a></li>
-                <li><a href="search.jsp">Brands</a></li>
+                <li>
+                  <a href="search.html">Tops</a>
+                  <ul class="sub-menu">
+                        <li><a href="search.html">Tshirts</a></li>
+                        <li><a href="search.html">Jumpers</a></li>
+                        <li><a href="search.html">Cardigans</a></li>
+                        <li><a href="search.html">Knitwear</a></li>
+                    </ul>
+                </li>
+                <li><a href="search.html">Trousers</a></li>
+                <li>
+                    <a href="search.html">Dresses</a>
+                    <ul class="sub-menu">
+                        <li><a href="search.html">Bridal dress</a></li>
+                        <li><a href="search.html">Cocktail dress</a></li>
+                        <li><a href="search.html">Maxi dress</a></li>
+                        <li><a href="search.html">Shift dress</a></li>
+                        <li><a href="search.html" class="current">Summer dress</a></li>
+                        <li><a href="search.html">Warp dress</a></li>
+                    </ul>
+                </li>
+                <li><a href="search.html">Skirts</a></li>
+                <li>
+                    <a href="search.html">Accessories</a>
+                    <ul class="sub-menu">
+                        <li><a href="search.html">Shoes</a></li>
+                        <li><a href="search.html">Hats</a></li>
+                        <li><a href="search.html">Bags</a></li>
+                        <li><a href="search.html">Scarves</a></li>
+                        <li><a href="search.html">Jewellery</a></li>
+                        <li><a href="search.html">Gloves</a></li>
+                    </ul>
+                </li>
+                <li><a href="search.html">Coats &amp; Jackets </a></li>
+                <li><a href="search.html">Brands</a></li>
           </ul>
         </nav>
     </div>
@@ -69,17 +97,25 @@
             <li><a href="#" class="facebook" title="like us us on Facebook">like us us on Facebook</a></li>
             <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
         </ul>
-        <form>
-        	<input type="text" placeholder="Search ABC comp..." /><button type="submit">Search</button>
+         <form action="search.jsp" method="GET">
+            <input type="text" name="q" placeholder="Search ABC comp..." /><input type="submit" value="Search">
         </form>
         <div id="action-bar"><a href="login.jsp">Login/Register</a> </div>
     </div>
 </aside>
+
 <article id="mainview">
-    <div id="breadcrumb"><a href="index.jsp">Home</a> > <a href="search.jsp">Dresses</a> > <a href="search.jsp">Summer Dress</a> > Summer Dress</div>
+    <c:set var="id" scope="session" value='<%= request.getParameter("id")%>'/>
+        <c:if test="${id}">
+        <sql:query dataSource="${snapshot}" var="result">
+            SELECT * FROM clothes WHERE id= ?
+            <sql:param value="${id}" />
+        </sql:query>
+    <c:forEach var="row" items="${result.rows}">
+    <div id="breadcrumb"><a href="index.jsp">Home</a> > <a href="search.jsp">${row.genre}</a> > <a href="search.jsp">${row.category}</a> > ${row.category}</div>
     <div id="description">
-        <h1>Elegant evening Dress</h1>
-        <strong id="price"><span>previously &pound;299.00</span> &pound;249.00</strong><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat ultricies fringilla. Suspendisse iaculis tristique leo, id adipiscing massa aliquet ut. Etiam adipiscing auctor enim nec tincidunt. Suspendisse non orci id nisi cursus accumsan id vitae urna. Donec sit amet elit interdum eros venenatis viverra. Quisque placerat, nunc quis tristique congue, ante urna semper eros, eleifend tincidunt metus lacus sed nunc. Aliquam erat volutpat. </p>
+        <h1>${row.name}</h1>
+        <strong id="price"><span>previously &yen;${row.price}</span> &yen;${row.price}</strong><p>${row.details}</p>
         <!--
         <p>
             <select>
@@ -104,9 +140,9 @@
             </ul>
             <section id="tabs-1">
                 <p> <strong>China Style Saver:</strong> Within 6 working days –          FREE</p>
-                <p> <strong>China Standard:</strong> Within 3 working days – £3.95 or FREE if                  you spend over £75.00</p>
-                <p> <strong>China Next Day: </strong>Order by 6pm Weekdays or 2pm          Sunday - £5.95 or               FREE if you spend over £100</p>
-                <p> <strong>China Same day delivery:</strong> Order by 10am Monday - Sunday you will receive your goods the same          day - £7.95</p>
+                <p> <strong>China Standard:</strong> Within 3 working days – ¥3.95 or FREE if                  you spend over ¥75.00</p>
+                <p> <strong>China Next Day: </strong>Order by 6pm Weekdays or 2pm          Sunday - ¥5.95 or               FREE if you spend over ¥100</p>
+                <p> <strong>China Same day delivery:</strong> Order by 10am Monday - Sunday you will receive your goods the same          day - ¥7.95</p>
                 <p> <a shape="rect" href="#" title="View more information on International and China delivery times">More info on International and China delivery times</a></p>
 </section>
             <section id="tabs-2">
@@ -119,13 +155,11 @@
         </div>
     </div>
     <div id="images">
-    	<a href="images/main.jpg"><img src="images/main.jpg"></a>
+    	<a href="images/main.jpg"><img src="images/${row.pic_location}"></a>
         <p>Rollover to zoom. Click to enlarge.</p>
-        <span class="sale">Sale</span>
-        <div id="productthumbs">
-            <a href="#"><img src="images/thumb1.jpg" /></a><a href="#"><img src="images/thumb2.jpg" /></a><a href="#"><img src="images/thumb3.jpg" /></a>
-        </div>
     </div>
+    </c:forEach>
+    </c:if>
 </article>
 
 <footer>

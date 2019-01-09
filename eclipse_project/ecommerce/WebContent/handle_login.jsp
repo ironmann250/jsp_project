@@ -17,7 +17,6 @@
      user="root"  password=""/>
 
 <h1>Successfully logged in</h1>
-
 <c:set var="email" value='<%= request.getParameter("email")%>'/>
 <sql:query dataSource="${snapshot}" var="result">
 SELECT * FROM accounts WHERE email= ?
@@ -28,9 +27,7 @@ SELECT * FROM accounts WHERE email= ?
    <%= request.getParameter("email")%>
 </p>
 <c:forEach var="row" items="${result.rows}">
-<tr>
    <p>Continue Logged In<a href="index.jsp?user=${row.id}"><a/></p>
-</tr>
 </c:forEach>
 
 

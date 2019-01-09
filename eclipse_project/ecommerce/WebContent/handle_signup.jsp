@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login Transition</title>
+<title>Register Transition</title>
 </head>
 <body>
 
@@ -17,11 +17,11 @@
      user="root"  password=""/>
 
 <h1>Successfully logged in</h1>
+
 <c:set var="email" value='<%= request.getParameter("email")%>'/>
-<sql:query dataSource="${snapshot}" var="result">
-SELECT * FROM accounts WHERE email= ?
-<sql:param value="${email}" />
-</sql:query>
+<sql:update dataSource="${snapshot}" var="result">
+INSERT INTO "account" ("email", "password") VALUES ('<%= request.getParameter("email")%>', '<%= request.getParameter("password")%>')
+</sql:update>
 
 <p><b>Welcome User:</b>
    <%= request.getParameter("email")%>

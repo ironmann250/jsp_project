@@ -13,9 +13,27 @@
 <body>
 <header>
 	<div class="wrapper">
-        <h1><a href="index.html" id="brand" title="ABC comp">ABC comp</a></h1>
+        <h1><a href="index.jsp" id="brand" title="ABC comp">ABC comp</a></h1>
         <nav>
             <ul>
+                <li>
+                  <a href="search.jsp">Men</a>
+                  <ul class="sub-menu">
+                        <li><a href="search.jsp">Tshirts</a></li>
+                        <li><a href="search.jsp">Jumpers</a></li>
+                        <li><a href="search.jsp">Pants</a></li>
+                        <li><a href="search.jsp">Knitwear</a></li>
+                    </ul>
+                </li>
+                <li>
+                  <a href="search.jsp">Women</a>
+                  <ul class="sub-menu">
+                        <li><a href="search.jsp">Tops</a></li>
+                        <li><a href="search.jsp">Bags</a></li>
+                        <li><a href="search.jsp">Shoes</a></li>
+                        <li><a href="search.jsp">Jewellery</a></li>
+                    </ul>
+                </li>
                 <li>
                   <a href="search.html">Tops</a>
                   <ul class="sub-menu">
@@ -27,7 +45,7 @@
                 </li>
                 <li><a href="search.html">Trousers</a></li>
                 <li>
-                	<a href="search.html">Dresses</a>
+                    <a href="search.html">Dresses</a>
                     <ul class="sub-menu">
                         <li><a href="search.html">Bridal dress</a></li>
                         <li><a href="search.html">Cocktail dress</a></li>
@@ -64,7 +82,7 @@
         <form>
         	<input type="text" placeholder="Search ABC comp..." /><button type="submit">Search</button>
         </form>
-        <div id="action-bar"><a href="login.html">Login/Register</a> </div>
+        <div id="action-bar"><a href="login.jsp">Login/Register</a> </div>
     </div>
 </aside>
 <article id="address">

@@ -17,40 +17,58 @@
         <nav>
             <ul>
                 <li>
-                  <a href="search.jsp">Tops</a>
+                  <a href="search.jsp">Men</a>
                   <ul class="sub-menu">
                         <li><a href="search.jsp">Tshirts</a></li>
                         <li><a href="search.jsp">Jumpers</a></li>
-                        <li><a href="search.jsp">Cardigans</a></li>
+                        <li><a href="search.jsp">Pants</a></li>
                         <li><a href="search.jsp">Knitwear</a></li>
                     </ul>
                 </li>
-                <li><a href="search.jsp">Trousers</a></li>
                 <li>
-                	<a href="search.jsp">Dresses</a>
-                    <ul class="sub-menu">
-                        <li><a href="search.jsp">Bridal dress</a></li>
-                        <li><a href="search.jsp">Cocktail dress</a></li>
-                        <li><a href="search.jsp">Maxi dress</a></li>
-                        <li><a href="search.jsp">Shift dress</a></li>
-                        <li><a href="search.jsp" class="current">Summer dress</a></li>
-                        <li><a href="search.jsp">Warp dress</a></li>
-                    </ul>
-                </li>
-                <li><a href="search.jsp">Skirts</a></li>
-                <li>
-                    <a href="search.jsp">Accessories</a>
-                    <ul class="sub-menu">
-                        <li><a href="search.jsp">Shoes</a></li>
-                        <li><a href="search.jsp">Hats</a></li>
+                  <a href="search.jsp">Women</a>
+                  <ul class="sub-menu">
+                        <li><a href="search.jsp">Tops</a></li>
                         <li><a href="search.jsp">Bags</a></li>
-                        <li><a href="search.jsp">Scarves</a></li>
+                        <li><a href="search.jsp">Shoes</a></li>
                         <li><a href="search.jsp">Jewellery</a></li>
-                        <li><a href="search.jsp">Gloves</a></li>
                     </ul>
                 </li>
-                <li><a href="search.jsp">Coats &amp; Jackets </a></li>
-                <li><a href="search.jsp">Brands</a></li>
+                <li>
+                  <a href="search.html">Tops</a>
+                  <ul class="sub-menu">
+                        <li><a href="search.html">Tshirts</a></li>
+                        <li><a href="search.html">Jumpers</a></li>
+                        <li><a href="search.html">Cardigans</a></li>
+                        <li><a href="search.html">Knitwear</a></li>
+                    </ul>
+                </li>
+                <li><a href="search.html">Trousers</a></li>
+                <li>
+                    <a href="search.html">Dresses</a>
+                    <ul class="sub-menu">
+                        <li><a href="search.html">Bridal dress</a></li>
+                        <li><a href="search.html">Cocktail dress</a></li>
+                        <li><a href="search.html">Maxi dress</a></li>
+                        <li><a href="search.html">Shift dress</a></li>
+                        <li><a href="search.html" class="current">Summer dress</a></li>
+                        <li><a href="search.html">Warp dress</a></li>
+                    </ul>
+                </li>
+                <li><a href="search.html">Skirts</a></li>
+                <li>
+                    <a href="search.html">Accessories</a>
+                    <ul class="sub-menu">
+                        <li><a href="search.html">Shoes</a></li>
+                        <li><a href="search.html">Hats</a></li>
+                        <li><a href="search.html">Bags</a></li>
+                        <li><a href="search.html">Scarves</a></li>
+                        <li><a href="search.html">Jewellery</a></li>
+                        <li><a href="search.html">Gloves</a></li>
+                    </ul>
+                </li>
+                <li><a href="search.html">Coats &amp; Jackets </a></li>
+                <li><a href="search.html">Brands</a></li>
           </ul>
         </nav>
     </div>
@@ -92,7 +110,7 @@
             </dl>
             <button>Change details</button>
         </td>
-        <td align="right" valign="top" class="price">&pound;249</td>
+        <td align="right" valign="top" class="price">&yen;249</td>
     </tr>
     <tr>
     	<td align="left" valign="top" class="description"><a href="main.jsp"><img src="images/thumb1.jpg" alt="Elegant evening Dress" class="left" /></a><p><a href="main.jsp">Elegant evening Dress</a><br />Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat ultricies fringilla. Suspendisse iaculis tristique leo, id adipiscing massa aliquet ut. Etiam adipiscing auctor enim nec tincidunt. </p>
@@ -110,7 +128,7 @@
             </dl>
             <button>Change details</button>
         </td>
-        <td align="right" valign="top" class="price">&pound;249</td>
+        <td align="right" valign="top" class="price">&yen;249</td>
     </tr>
     <tr>
     	<td align="left" valign="top" class="description"><a href="main.jsp"><img src="images/thumb1.jpg" alt="Elegant evening Dress" class="left" /></a><p><a href="main.jsp">Elegant evening Dress</a><br />Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat ultricies fringilla. Suspendisse iaculis tristique leo, id adipiscing massa aliquet ut. Etiam adipiscing auctor enim nec tincidunt. </p>
@@ -128,19 +146,19 @@
             </dl>
             <button>Change details</button>
         </td>
-        <td align="right" valign="top" class="price">&pound;249</td>
+        <td align="right" valign="top" class="price">&yen;249</td>
     </tr>
 </table>
 <img src="images/creditcards.gif" class="safe" />
 <div class="right">
-    <strong>Subtotal before Delivery Charges</strong> <em>&pound;398.00</em><br />
+    <strong>Subtotal before Delivery Charges</strong> <em>&yen;398.00</em><br />
     <p>
         <select>
         	<option>Free delivery (3-5 days)</option>
-            <option>Next day delivery (£3.99)</option>
-        </select> <em>&pound;0.00</em>
+            <option>Next day delivery (¥3.99)</option>
+        </select> <em>&yen;0.00</em>
     </p>
-    <strong>Your total</strong> <em>&pound;398.00</em>
+    <strong>Your total</strong> <em>&yen;398.00</em>
 </div>
 <button class="continue">Pay securely now</button>
 </article>
