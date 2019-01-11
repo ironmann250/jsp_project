@@ -1,12 +1,4 @@
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
-<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
 <meta charset="utf-8">
 <title>Online Clothes Catalog</title>
@@ -26,12 +18,9 @@
 </script>
 </head>
 <body>
-     <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-     url="jdbc:mysql://localhost/catalog_db"
-     user="root"  password=""/>
 <header>
 	<div class="wrapper">
-        <h1><a href="index.jsp" id="brand" title="ABC comp">ABC comp</a></h1>
+        <h1><a href="index.jsp" id="brand" title="Mosi Store">Mosi Store</a></h1>
         <nav>
             <ul>
                 <li>
@@ -53,40 +42,40 @@
                     </ul>
                 </li>
                 <li>
-                  <a href="search.html">Tops</a>
+                  <a href="search.jsp">Tops</a>
                   <ul class="sub-menu">
-                        <li><a href="search.html">Tshirts</a></li>
-                        <li><a href="search.html">Jumpers</a></li>
-                        <li><a href="search.html">Cardigans</a></li>
-                        <li><a href="search.html">Knitwear</a></li>
+                        <li><a href="search.jsp">Tshirts</a></li>
+                        <li><a href="search.jsp">Jumpers</a></li>
+                        <li><a href="search.jsp">Cardigans</a></li>
+                        <li><a href="search.jsp">Knitwear</a></li>
                     </ul>
                 </li>
-                <li><a href="search.html">Trousers</a></li>
+                <li><a href="search.jsp">Trousers</a></li>
                 <li>
-                    <a href="search.html">Dresses</a>
+                    <a href="search.jsp">Dresses</a>
                     <ul class="sub-menu">
-                        <li><a href="search.html">Bridal dress</a></li>
-                        <li><a href="search.html">Cocktail dress</a></li>
-                        <li><a href="search.html">Maxi dress</a></li>
-                        <li><a href="search.html">Shift dress</a></li>
-                        <li><a href="search.html" class="current">Summer dress</a></li>
-                        <li><a href="search.html">Warp dress</a></li>
+                        <li><a href="search.jsp">Bridal dress</a></li>
+                        <li><a href="search.jsp">Cocktail dress</a></li>
+                        <li><a href="search.jsp">Maxi dress</a></li>
+                        <li><a href="search.jsp">Shift dress</a></li>
+                        <li><a href="search.jsp" class="current">Summer dress</a></li>
+                        <li><a href="search.jsp">Warp dress</a></li>
                     </ul>
                 </li>
-                <li><a href="search.html">Skirts</a></li>
+                <li><a href="search.jsp">Skirts</a></li>
                 <li>
-                    <a href="search.html">Accessories</a>
+                    <a href="search.jsp">Accessories</a>
                     <ul class="sub-menu">
-                        <li><a href="search.html">Shoes</a></li>
-                        <li><a href="search.html">Hats</a></li>
-                        <li><a href="search.html">Bags</a></li>
-                        <li><a href="search.html">Scarves</a></li>
-                        <li><a href="search.html">Jewellery</a></li>
-                        <li><a href="search.html">Gloves</a></li>
+                        <li><a href="search.jsp">Shoes</a></li>
+                        <li><a href="search.jsp">Hats</a></li>
+                        <li><a href="search.jsp">Bags</a></li>
+                        <li><a href="search.jsp">Scarves</a></li>
+                        <li><a href="search.jsp">Jewellery</a></li>
+                        <li><a href="search.jsp">Gloves</a></li>
                     </ul>
                 </li>
-                <li><a href="search.html">Coats &amp; Jackets </a></li>
-                <li><a href="search.html">Brands</a></li>
+                <li><a href="search.jsp">Coats &amp; Jackets </a></li>
+                <li><a href="search.jsp">Brands</a></li>
           </ul>
         </nav>
     </div>
@@ -97,25 +86,22 @@
             <li><a href="#" class="facebook" title="like us us on Facebook">like us us on Facebook</a></li>
             <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
         </ul>
-         <form action="search.jsp" method="GET">
-            <input type="text" name="q" placeholder="Search ABC comp..." /><input type="submit" value="Search">
+        <form>
+        	<input type="text" placeholder="Search Mosi Store..." /><button type="submit">Search</button>
         </form>
         <div id="action-bar"><a href="login.jsp">Login/Register</a> </div>
     </div>
 </aside>
-
 <article id="mainview">
-    <c:set var="id" scope="session" value='<%= request.getParameter("id")%>'/>
-        <c:if test="${id}">
-        <sql:query dataSource="${snapshot}" var="result">
-            SELECT * FROM clothes WHERE id= ?
-            <sql:param value="${id}" />
-        </sql:query>
-    <c:forEach var="row" items="${result.rows}">
-    <div id="breadcrumb"><a href="index.jsp">Home</a> > <a href="search.jsp">${row.genre}</a> > <a href="search.jsp">${row.category}</a> > ${row.category}</div>
     <div id="description">
-        <h1>${row.name}</h1>
-        <strong id="price"><span>previously &yen;${row.price}</span> &yen;${row.price}</strong><p>${row.details}</p>
+        <h1>Elegant evening Dress</h1>
+        <strong id="price"><span>previously &yen;299.00</span> &yen;249.00</strong><p>This Product is available for all adult sizes it has undergone rudimental test to insure you buy quality,
+        and strong fabric, it is suitable for all weathers,
+        read the information below to see methods used for washing,
+        Mosi Store is proud to send you this quality product,
+        any inquiry considering any problem you encounter we are,
+        available 24/7 to help! 
+        </p>
         <!--
         <p>
             <select>
@@ -155,18 +141,17 @@
         </div>
     </div>
     <div id="images">
-    	<a href="images/main.jpg"><img src="images/${row.pic_location}"></a>
+    	<a href="images/dresses.jpg"><img src="images/dresses.jpg"></a>
         <p>Rollover to zoom. Click to enlarge.</p>
+       
     </div>
-    </c:forEach>
-    </c:if>
 </article>
 
 <footer>
 	<div class="wrapper">
-    	<span class="logo">ABC comp</span>
-         &copy; ABC comp <a href="#">Sitemap</a> <a href="#">Terms &amp; Conditions</a> <a href="#">Shipping &amp; Returns</a> <a href="#">Size Guide</a><a href="#">Help</a> <br />
-        Address to said ABC comp, including postcode &nbsp;-&nbsp; 1.888.CO.name <a href="mailto:ABC comp">service@ABC comp.com</a>
+    	<span class="logo">Mosi Store</span>
+         &copy; Mosi Store <a href="#">Sitemap</a> <a href="#">Terms &amp; Conditions</a> <a href="#">Shipping &amp; Returns</a> <a href="#">Size Guide</a><a href="#">Help</a> <br />
+        Address to said Mosi Store, including postcode &nbsp;-&nbsp; 1.888.CO.name <a href="mailto:Mosi Store">service@Mosi Store.com</a>
     </div>
 </footer>
 </body>
