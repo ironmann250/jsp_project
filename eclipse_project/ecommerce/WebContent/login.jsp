@@ -85,7 +85,8 @@
     </div>
 </aside>
 <article id="login">
-	<form>
+    <section>
+	<form action='index.jsp' method="GET">
     	<h1>Existing customers</h1>
         <p><label for="email">Email</label>
         <input type="email" name="email" /></p>
@@ -93,14 +94,16 @@
         <input type="password" name="password" /></p>
         <p><button>Sign in</button> <a href="#">Forgotten password?</a></p>
     </form>
+    </section>
     <section>
+    <form action='index.jsp' method="GET">
         <h2>New to Mosi Store?</h2>
         <p><label for="email">Email</label>
-        <input type="email" name="semail" /></p>
+        <input type="email" name="email" /></p>
         <p><label for="pasword">Password</label>
-        <input type="password" name="spassword" /></p>
+        <input type="password" name="password" /></p>
         <input type="submit" value="Sign up">
-
+    </form>
     </section>
 </article>
 <footer>

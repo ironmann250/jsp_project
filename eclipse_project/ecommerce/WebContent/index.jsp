@@ -4,6 +4,8 @@
 <title>Online Clothes Catalog</title>
 <link rel="stylesheet" href="css/style.css" />
 <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
+<script type="text/javascript" src="js/get.js"></script>
 <!-- The below script Makes IE understand the new html5 tags are there and applies our CSS to it -->
 <!--[if IE]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,35 +8,33 @@
 <title>Online Clothes Catalog</title>
 <link rel="stylesheet" href="css/style.css" />
 <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
-<script type="text/javascript" src="js/get.js"></script>
 <!-- The below script Makes IE understand the new html5 tags are there and applies our CSS to it -->
 <!--[if IE]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 </head>
-<body id="home">
+<body>
 <header>
 	<div class="wrapper">
-        <h1><a href="index.html" id="brand" title="Mosi Store">Mosi Store</a></h1>
+        <h1><a href="index.jsp" id="brand" title="Mosi Store">Mosi Store</a></h1>
         <nav>
             <ul>
                 <li>
-                  <a href="search.html">Men</a>
+                  <a href="search.jsp">Men</a>
                   <ul class="sub-menu">
-                        <li><a href="search.html">Tshirts</a></li>
-                        <li><a href="search.html">Jumpers</a></li>
-                        <li><a href="search.html">Pants</a></li>
-                        <li><a href="search.html">Knitwear</a></li>
+                        <li><a href="search.jsp">Tshirts</a></li>
+                        <li><a href="search.jsp">Jumpers</a></li>
+                        <li><a href="search.jsp">Pants</a></li>
+                        <li><a href="search.jsp">Knitwear</a></li>
                     </ul>
                 </li>
                 <li>
-                  <a href="search.html">Women</a>
+                  <a href="search.jsp">Women</a>
                   <ul class="sub-menu">
-                        <li><a href="search.html">Tops</a></li>
-                        <li><a href="search.html">Bags</a></li>
-                        <li><a href="search.html">Shoes</a></li>
-                        <li><a href="search.html">Jewellery</a></li>
+                        <li><a href="search.jsp">Tops</a></li>
+                        <li><a href="search.jsp">Bags</a></li>
+                        <li><a href="search.jsp">Shoes</a></li>
+                        <li><a href="search.jsp">Jewellery</a></li>
                     </ul>
                 </li>
                 <li>
@@ -84,21 +85,34 @@
         <form>
         	<input type="text" placeholder="Search Mosi Store..." /><button type="submit">Search</button>
         </form>
-        <div id="action-bar"><a href="login.html">Login/Register</a>  </div>
+        <div id="action-bar"><a href="login.jsp">Login/Register</a> </div>
     </div>
 </aside>
-<article>
-	<a href="search.html"><img src="images/photo.jpg" /></a>
+<article id="login">
+	<form action="handle_login.jsp" method="POST">
+    	<h1>Existing customers</h1>
+        <p><label for="email">Email</label>
+        <input type="email" name="email" /></p>
+        <p><label for="pasword">Password</label>
+        <input type="password" name="password" /></p>
+        <p><input type="submit" value="Sign in"><a href="#">Forgotten password?</a></p>
+    </form action="handle_signup.jsp" method="POST">
+    <section>
+    	<h2>New to Mosi Store?</h2>
+        <p><label for="email">Email</label>
+        <input type="email" name="semail" /></p>
+        <p><label for="pasword">Password</label>
+        <input type="password" name="spassword" /></p>
+        <input type="submit" value="Sign up">
+
+    </section>
 </article>
 <footer>
 	<div class="wrapper">
     	<span class="logo">Mosi Store</span>
-         &copy; Mosi Store <a href="#">Sitemap</a> <a href="#">Terms &amp; Conditions</a> <a href="#">Shipping &amp; Returns</a> <a href="#">Size Guide</a><a href="#">Help</a> <br />
+          &copy; Mosi Store <a href="#">Sitemap</a> <a href="#">Terms &amp; Conditions</a> <a href="#">Shipping &amp; Returns</a> <a href="#">Size Guide</a><a href="#">Help</a> <br />
         Address to said Mosi Store, including postcode &nbsp;-&nbsp; 1.888.CO.name <a href="mailto:Mosi Store">service@Mosi Store.com</a>
     </div>
 </footer>
 </body>
-
-
-
 </html>
